@@ -94,13 +94,13 @@ const ProductList = () => {
 
     const getProducts = async () => {
         setLoading(true);
-        const response = await axios.get("http://localhost:5000/products");
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/products`);
         setProducts(response.data);
         setLoading(false);
     };
 
     const deleteProduct = async (productId) => {
-        await axios.delete(`http://localhost:5000/products/${productId}`);
+        await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/products/${productId}`);
         getProducts();
     };
 
