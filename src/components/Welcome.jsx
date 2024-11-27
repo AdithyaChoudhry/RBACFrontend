@@ -114,7 +114,7 @@ const Welcome = () => {
     const interval = setInterval(collide, 5000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [setIsColliding]);
 
   const getNeonColor = () => {
     return neonColors[Math.floor(Math.random() * neonColors.length)];
