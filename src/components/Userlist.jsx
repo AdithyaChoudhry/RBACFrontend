@@ -97,7 +97,7 @@ const Userlist = () => {
     };
 
     const deleteUser = async (userId) => {
-        await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/users/${id}`);
+        await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}`);
         getUsers();
     };
 
