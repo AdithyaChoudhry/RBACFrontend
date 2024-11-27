@@ -92,12 +92,12 @@ const Userlist = () => {
     }, []);
 
     const getUsers = async () => {
-        const response = await axios.get("http://rbacbackend-production.up.railway.app/users");
+        const response = await axios.get("http://localhost:5000/users");
         setUsers(response.data);
     };
 
     const deleteUser = async (userId) => {
-        await axios.delete(`http://rbacbackend-production.up.railway.app/users/${userId}`);
+        await axios.delete(`http://localhost:5000/users/${userId}`);
         getUsers();
     };
 

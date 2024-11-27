@@ -26,22 +26,6 @@ const NavbarBrand = styled.div`
     align-items: center;
 `;
 
-const NavbarItem = styled(NavLink)`
-    color: #fff;
-    margin-left: 20px;
-    font-size: 1.2em;
-    text-decoration: none;
-    transition: color 0.3s ease;
-
-    &.active {
-        font-weight: bold;
-        text-decoration: underline;
-    }
-
-    &:hover {
-        color: rgba(255, 255, 255, 0.8);
-    }
-`;
 
 const Logo = styled.img`
     width: 40px;
@@ -72,7 +56,6 @@ const LogoutButton = styled.button`
 const Navbar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { user } = useSelector((state) => state.auth);
 
     const logout = () => {
         dispatch(LogOut());
