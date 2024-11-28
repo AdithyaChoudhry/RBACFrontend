@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { useSpring, animated } from 'react-spring';
 import styled, { keyframes } from 'styled-components';
 
@@ -83,23 +82,22 @@ const neonColors = [
 ];
 
 const Welcome = () => {
-  const { user } = useSelector((state) => state.auth);
   const [isColliding, setIsColliding] = useState(false);
 
   const titleAnimation = useSpring({
-    opacity: user ? 1 : 0,
-    transform: user ? 'translateY(0px)' : 'translateY(-30px)',
+    opacity: 1,
+    transform: 'translateY(0px)',
     config: { tension: 280, friction: 12 },
   });
 
   const nameAnimation = useSpring({
-    opacity: user ? 1 : 0,
-    transform: user ? 'translateY(0px)' : 'translateY(-20px)',
+    opacity: 1,
+    transform: 'translateY(0px)',
     config: { tension: 300, friction: 10 },
   });
 
   const backgroundAnimation = useSpring({
-    background: user ? 'linear-gradient(135deg, #1e1e1e 0%, #007acc 100%)' : 'linear-gradient(135deg, #ffffff 0%, #ffffff 100%)',
+    background: 'linear-gradient(135deg, #1e1e1e 0%, #007acc 100%)',
     config: { tension: 200, friction: 20 },
   });
 
@@ -114,21 +112,21 @@ const Welcome = () => {
     const interval = setInterval(collide, 5000);
 
     return () => clearInterval(interval);
-  }, [setIsColliding]);
+  }, []);
 
   const getNeonColor = () => {
     return neonColors[Math.floor(Math.random() * neonColors.length)];
   };
 
   const getSubtitleColor = () => {
-    return user ? '#00ff00' : '#000000'; // Example colors based on user state
+    return '#00ff00'; // Example color for guest
   };
 
   return (
     <Container style={backgroundAnimation}>
-      <Title style={titleAnimation}>Welcome, {user ? user.name : 'Guest'}!</Title>
+      <Title style={titleAnimation}>Welcome, Guest!</Title>
       <StyledSubtitle style={nameAnimation} color={getSubtitleColor()}>
-        {user ? `It's great to see you here, ${user.name}!` : 'Please log in to continue.'}
+        Please log in to continue.
       </StyledSubtitle>
       {isColliding && <div style={{ color: 'red', position: 'absolute', top: '20px', left: '20px' }}>Collision Detected!</div>}
       <Dot style={{ top: '40%', left: '10%' }} size={20 + Math.random() * 30} color={getNeonColor()} />
