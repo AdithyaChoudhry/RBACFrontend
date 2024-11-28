@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useSpring, animated } from 'react-spring';
 import styled, { keyframes } from 'styled-components';
 
+// Background Animation
 const moveBackground = keyframes`
   0% { background-position: 0% 0%; }
   50% { background-position: 100% 100%; }
@@ -52,7 +53,7 @@ const StyledSubtitle = styled(animated.h2)`
   animation: ${scroll} 10s linear infinite;
   margin-top: 100px;
   left: 20px;
-  color: ${props => props.color};
+  color: ${props => props.color}; // Use dynamic color prop
 `;
 
 const DotAnimation = keyframes`
@@ -74,11 +75,11 @@ const Dot = styled(animated.div)`
 `;
 
 const neonColors = [
-  'rgba(0, 255, 255, 1)',
-  'rgba(255, 0, 255, 1)',
-  'rgba(255, 255, 0, 1)',
-  'rgba(0, 255, 0, 1)',
-  'rgba(255, 165, 0, 1)',
+  'rgba(0, 255, 255, 1)', // Cyan
+  'rgba(255, 0, 255, 1)', // Magenta
+  'rgba(255, 255, 0, 1)', // Yellow
+  'rgba(0, 255, 0, 1)',   // Lime
+  'rgba(255, 165, 0, 1)', // Orange
 ];
 
 const Welcome = () => {
@@ -104,7 +105,8 @@ const Welcome = () => {
 
   useEffect(() => {
     const collide = () => {
-      setIsColliding(true setTimeout(() => {
+      setIsColliding(true);
+      setTimeout(() => {
         setIsColliding(false);
       }, 1000);
     };
@@ -112,14 +114,14 @@ const Welcome = () => {
     const interval = setInterval(collide, 5000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [setIsColliding]);
 
   const getNeonColor = () => {
     return neonColors[Math.floor(Math.random() * neonColors.length)];
   };
 
   const getSubtitleColor = () => {
-    return user ? '#00ff00' : '#000000';
+    return user ? '#00ff00' : '#000000'; // Example colors based on user state
   };
 
   return (
@@ -128,6 +130,7 @@ const Welcome = () => {
       <StyledSubtitle style={nameAnimation} color={getSubtitleColor()}>
         {user ? `It's great to see you here, ${user.name}!` : 'Please log in to continue.'}
       </StyledSubtitle>
+      {isColliding && <div style={{ color: 'red', position: 'absolute', top: '20px', left: '20px' }}>Collision Detected!</div>}
       <Dot style={{ top: '40%', left: '10%' }} size={20 + Math.random() * 30} color={getNeonColor()} />
       <Dot style={{ top: '50%', left: '30%' }} size={20 + Math.random() * 30} color={getNeonColor()} />
       <Dot style={{ top: '30%', left: '50%' }} size={20 + Math.random() * 30} color={getNeonColor()} />
