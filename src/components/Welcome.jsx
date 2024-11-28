@@ -84,7 +84,7 @@ const neonColors = [
 
 const Welcome = () => {
   const { user } = useSelector((state) => state.auth);
-  const [setIsColliding] = useState(false);
+  const [isColliding, setIsColliding] = useState(false);
 
   const titleAnimation = useSpring({
     opacity: user ? 1 : 0,
@@ -114,7 +114,7 @@ const Welcome = () => {
     const interval = setInterval(collide, 5000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [setIsColliding]);
 
   const getNeonColor = () => {
     return neonColors[Math.floor(Math.random() * neonColors.length)];
@@ -130,6 +130,7 @@ const Welcome = () => {
       <StyledSubtitle style={nameAnimation} color={getSubtitleColor()}>
         {user ? `It's great to see you here, ${user.name}!` : 'Please log in to continue.'}
       </StyledSubtitle>
+      {isColliding && <div style={{ color: 'red', position: 'absolute', top: '20px', left: '20px' }}>Collision Detected!</div>}
       <Dot style={{ top: '40%', left: '10%' }} size={20 + Math.random() * 30} color={getNeonColor()} />
       <Dot style={{ top: '50%', left: '30%' }} size={20 + Math.random() * 30} color={getNeonColor()} />
       <Dot style={{ top: '30%', left: '50%' }} size={20 + Math.random() * 30} color={getNeonColor()} />
