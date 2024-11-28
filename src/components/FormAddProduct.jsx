@@ -92,7 +92,7 @@ const FormAddProduct = () => {
     const saveProduct = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("http://localhost:5000/products", {
+            await axios.post("https://rbacbackend-production.up.railway.app/products", {
                 name: name,
                 price: price,
             });

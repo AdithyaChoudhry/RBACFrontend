@@ -94,13 +94,13 @@ const ProductList = () => {
 
     const getProducts = async () => {
         setLoading(true);
-        const response = await axios.get("http://localhost:5000/products");
+        const response = await axios.get("https://rbacbackend-production.up.railway.app/products");
         setProducts(response.data);
         setLoading(false);
     };
 
     const deleteProduct = async (productId) => {
-        await axios.delete(`http://localhost:5000/products/${productId}`);
+        await axios.delete(`https://rbacbackend-production.up.railway.app/products/${productId}`);
         getProducts();
     };
 
