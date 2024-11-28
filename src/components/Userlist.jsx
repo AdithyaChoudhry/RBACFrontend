@@ -92,12 +92,12 @@ const Userlist = () => {
     }, []);
 
     const getUsers = async () => {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/users`);
+        const response = await axios.get("http://localhost:5000/users");
         setUsers(response.data);
     };
 
     const deleteUser = async (userId) => {
-        await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}`);
+        await axios.delete(`http://localhost:5000/users/${userId}`);
         getUsers();
     };
 

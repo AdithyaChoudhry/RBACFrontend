@@ -69,55 +69,59 @@ const LogoutButton = styled.button`
   }
 `;
 
+const MainContent = styled.div`
+  margin-left: 250px;
+  padding: 20px;
+`;
 
 const Sidebar = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
 
-    const logout = () => {
-        dispatch(LogOut());
-        dispatch(reset());
-        navigate("/");
-    };
+  const logout = () => {
+    dispatch(LogOut());
+    dispatch(reset());
+    navigate("/");
+  };
 
-    return (
-        <SidebarContainer>
-            <MenuLabel>General</MenuLabel>
-            <MenuList>
-                <MenuItem>
-                    <NavLink to={"/dashboard"}>
-                        <IoHome /> Dashboard
-                    </NavLink>
-                </MenuItem>
-                <MenuItem>
-                    <NavLink to={"/products"}>
-                        <IoPricetag /> Products
-                    </NavLink>
-                </MenuItem>
-            </MenuList>
-            {user && user.role === "admin" && (
-                <div>
-                    <MenuLabel>Admin</MenuLabel>
-                    <MenuList>
-                        <MenuItem>
-                            <NavLink to={"/users"}>
-                                <IoPerson /> Users
-                            </NavLink>
-                        </MenuItem>
-                    </MenuList>
-                </div>
-            )}
-            <MenuLabel>Settings</MenuLabel>
-            <MenuList>
-                <MenuItem>
-                    <LogoutButton onClick={logout}>
-                        <IoLogOut /> Logout
-                    </LogoutButton>
-                </MenuItem>
-            </MenuList>
-        </SidebarContainer>
-    );
+  return (
+    <SidebarContainer>
+      <MenuLabel>General</MenuLabel>
+      <MenuList>
+        <MenuItem>
+          <NavLink to={"/dashboard"}>
+            <IoHome /> Dashboard
+          </NavLink>
+        </MenuItem>
+        <MenuItem>
+          <NavLink to={"/products"}>
+            <IoPricetag /> Products
+          </NavLink>
+        </MenuItem>
+      </MenuList>
+      {user && user.role === "admin" && (
+        <div>
+          <MenuLabel>Admin</MenuLabel>
+          <MenuList>
+            <MenuItem>
+              <NavLink to={"/users"}>
+                <IoPerson /> Users
+              </NavLink>
+            </MenuItem>
+          </MenuList>
+        </div>
+      )}
+      <MenuLabel>Settings</MenuLabel>
+      <MenuList>
+        <MenuItem>
+          <LogoutButton onClick={logout}>
+            <IoLogOut /> Logout
+          </LogoutButton>
+        </MenuItem>
+      </MenuList>
+    </SidebarContainer>
+  );
 };
 
 export default Sidebar;

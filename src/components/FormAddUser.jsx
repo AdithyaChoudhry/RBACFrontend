@@ -104,7 +104,7 @@ const FormAddUser = () => {
     const saveUser = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/users`, {
+            await axios.post("http://localhost:5000/users", {
                 name: name,
                 email: email,
                 password: password,

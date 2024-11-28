@@ -92,7 +92,7 @@ const FormAddProduct = () => {
     const saveProduct = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/products`, {
+            await axios.post("http://localhost:5000/products", {
                 name: name,
                 price: price,
             });

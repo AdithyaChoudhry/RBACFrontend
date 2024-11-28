@@ -84,7 +84,7 @@ const neonColors = [
 
 const Welcome = () => {
   const { user } = useSelector((state) => state.auth);
-  const [setIsColliding] = useState(false);
+  const [isColliding, setIsColliding] = useState(false);
 
   const titleAnimation = useSpring({
     opacity: user ? 1 : 0,
@@ -114,7 +114,7 @@ const Welcome = () => {
     const interval = setInterval(collide, 5000);
 
     return () => clearInterval(interval);
-  }, [setIsColliding]);
+  }, []);
 
   const getNeonColor = () => {
     return neonColors[Math.floor(Math.random() * neonColors.length)];
