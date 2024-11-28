@@ -69,10 +69,6 @@ const LogoutButton = styled.button`
   }
 `;
 
-const MainContent = styled.div`
-  margin-left: 250px;
-  padding: 20px;
-`;
 
 const Sidebar = () => {
   const dispatch = useDispatch();
